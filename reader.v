@@ -11,7 +11,7 @@ pub mut:
 	pos			int
 }
 
-pub fn (r &Reader) new_reader(data []byte) &Reader {
+pub fn new_reader(data []byte) &Reader {
 	return &Reader{buffer_: data}
 }
 
