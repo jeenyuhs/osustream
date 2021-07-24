@@ -1,4 +1,4 @@
-module osu_buffer
+module osustream
 
 import encoding.binary
 import math
@@ -9,6 +9,10 @@ pub:
 
 pub mut:
 	pos			int
+}
+
+pub fn (r &Reader) new_reader(data []byte) &Reader {
+	return &Reader{buffer_: data}
 }
 
 pub fn (r &Reader) buffer() []byte {

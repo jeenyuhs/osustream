@@ -1,4 +1,4 @@
-module osu_buffer
+module osustream
 
 struct Stream {
 mut:

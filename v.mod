@@ -1,5 +1,5 @@
 Module {
-    name: "osu_buffer"
+    name: "osustream"
     description: "An osu buffer reader and writer made in vlang!"
     version: "0.0.1"
     license: "MIT"
