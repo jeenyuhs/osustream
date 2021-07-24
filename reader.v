@@ -3,70 +3,12 @@ module reader
 import encoding.binary
 import math
 
-pub enum ReadablePackets {
-	change_action = 0
-	send_public_message = 1
-	logout = 2
-	request_status_update = 3
-	ping = 4
-	start_spectating = 16
-	stop_spectating = 17
-	spectate_frames = 18
-	error_report = 20
-	cant_spectate = 21
-	send_private_message = 25
-	part_lobby = 29
-	join_lobby = 30
-	create_match = 31
-	join_match = 32
-	part_match = 33
-	match_change_slot = 38
-	match_ready = 39
-	match_lock = 40
-	match_change_settings = 41
-	match_start = 44
-	match_score_update = 47
-	match_complete = 49
-	match_change_mods = 51
-	match_load_complete = 52
-	match_no_beatmap = 54
-	match_not_ready = 55
-	match_failed = 56
-	match_has_beatmap = 59
-	match_skip_request = 60
-	channel_join = 63
-	beatmap_info_request = 68
-	match_transfer_host = 70
-	friend_add = 73
-	friend_remove = 74
-	match_change_team = 77
-	channel_part = 78
-	receive_updates = 79
-	set_away_message = 82
-	irc_only = 84
-	user_stats_request = 85
-	match_invite = 87
-	match_change_password = 90
-	tournament_match_info_request = 93
-	user_presence_request = 97
-	user_presence_request_all = 98
-	toggle_block_non_friend_dms = 99
-	tournament_join_match_channel = 108
-	tournament_leave_match_channel = 109
-	end = 110
-}
-
 pub struct Reader {
 pub:
 	buffer_		[]byte 	[required]
 
 pub mut:
 	pos			int
-
-mut:
-	length		int
-	buffer_t	ReadablePackets
-	buffer_id	u16
 }
 
 pub fn (r &Reader) buffer() []byte {

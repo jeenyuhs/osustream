@@ -1,70 +1,5 @@
 module writer
 
-import reader
-
-pub enum WritablePackets {
-	user_id = 5
-	cmd_err = 6
-	send_message = 7
-	pong = 8
-	handle_irc_change_username = 9
-	handle_irc_quit = 10
-	user_stats = 11
-	user_logout = 12
-	spectator_joined = 13
-	spectator_left = 14
-	spectate_frames = 15
-	version_update = 19
-	spectator_cant_spectate = 22
-	get_attention = 23
-	notification = 24
-	update_match = 26
-	new_match = 27
-	dispose_match = 28
-	toggle_block_non_friend_dms = 34
-	match_join_success = 36
-	match_join_fail = 37
-	fellow_spectator_joined = 42
-	fellow_spectator_left = 43
-	all_players_loaded = 45
-	match_start = 46
-	match_score_update = 48
-	match_transfer_host = 50
-	match_all_players_loaded = 53
-	match_player_failed = 57
-	match_complete = 58
-	match_skip = 61
-	unauthorized = 62
-	channel_join_success = 64
-	channel_info = 65
-	channel_kick = 66
-	channel_auto_join = 67
-	beatmap_info_reply = 69
-	privileges = 71
-	friends_list = 72
-	protocol_version = 75
-	main_menu_icon = 76
-	monitor = 80
-	match_player_skipped = 81
-	user_presence = 83
-	restart = 86
-	match_invite = 88
-	channel_info_end = 89
-	match_change_password = 91
-	silence_end = 92
-	user_silenced = 94
-	user_presence_single = 95
-	user_presence_bundle = 96
-	user_dm_blocked = 100
-	target_is_silenced = 101
-	version_update_forced = 102
-	switch_server = 103
-	account_restricted = 104
-	rtx = 105 // deprecated
-	match_abort = 106
-	switch_tournament_server = 107
-}
-
 struct Stream {
 mut:
 	content		[]byte
@@ -156,7 +91,8 @@ pub fn (mut s Stream) write_i32_l(vals []int) {
 
 type PacketVal = byte | i8 | u16 | i16 | u32 | int | u64 | i64 | string
 
-pub fn make_packet(packet reader.ReadablePackets, values ...PacketVal) ?[]byte {
+// writer.make_packet(4, "string", 0, u32(1))
+pub fn make_packet(packet int, values ...PacketVal) ?[]byte {
 	mut s := Stream{}
 
 	s.write_u16(u16(packet))
