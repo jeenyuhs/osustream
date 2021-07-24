@@ -1,4 +1,4 @@
-module reader
+module osu_buffer
 
 import encoding.binary
 import math

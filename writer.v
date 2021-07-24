@@ -1,4 +1,4 @@
-module writer
+module osu_buffer
 
 struct Stream {
 mut:
