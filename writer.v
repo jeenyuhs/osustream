@@ -5,35 +5,35 @@ mut:
 	content		[]byte
 }
 
-pub fn (mut s Stream) write_u8(i u8) {
+fn (mut s Stream) write_u8(i u8) {
 	s.content << i
 }
 
-pub fn (mut s Stream) write_i8(i i8) {
+fn (mut s Stream) write_i8(i i8) {
 	s.content << byte(i)
 }
 
-pub fn (mut s Stream) write_u16(i u16) {
+fn (mut s Stream) write_u16(i u16) {
 	s.content << byte(i)
 	s.content << byte(i >> u16(8))
 }
 
-pub fn (mut s Stream) write_i16(i i16) {
+fn (mut s Stream) write_i16(i i16) {
 	s.write_u16(u16(i))
 }
 
-pub fn (mut s Stream) write_u32(i u32) {
+fn (mut s Stream) write_u32(i u32) {
 	s.content << byte(i)
 	s.content << byte(i >> u32(8))
 	s.content << byte(i >> u32(16))
 	s.content << byte(i >> u32(24))
 }
 
-pub fn (mut s Stream) write_i32(i int) {
+fn (mut s Stream) write_i32(i int) {
 	s.write_u32(u32(i))
 }
 
-pub fn (mut s Stream) write_packet_length(len int) {
+fn (mut s Stream) write_packet_length(len int) {
 	mut b := 0
 
 	b += byte(len)
@@ -44,7 +44,7 @@ pub fn (mut s Stream) write_packet_length(len int) {
 	s.content[3] = byte(b)
 }
 
-pub fn (mut s Stream) write_u64(i u64) {
+fn (mut s Stream) write_u64(i u64) {
 	s.content << byte(i)
 	s.content << byte(i >> u64(8))
 	s.content << byte(i >> u64(16))
@@ -55,11 +55,11 @@ pub fn (mut s Stream) write_u64(i u64) {
 	s.content << byte(i >> u64(56))
 }
 
-pub fn (mut s Stream) write_i64(i i64) {
+fn (mut s Stream) write_i64(i i64) {
 	s.write_u64(u64(i))
 }
 
-pub fn (mut s Stream) write_str(str string) {
+fn (mut s Stream) write_str(str string) {
 	mut length := str.len
 
 	if length == 0 {
@@ -81,7 +81,7 @@ pub fn (mut s Stream) write_str(str string) {
 	}
 }
 
-pub fn (mut s Stream) write_i32_l(vals []int) {
+fn (mut s Stream) write_i32_l(vals []int) {
 	s.write_i16(i16(vals.len))
 
 	for val in vals {
