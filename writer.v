@@ -92,7 +92,7 @@ fn (mut s Stream) write_i32_l(vals []int) {
 type PacketVal = byte | i8 | u16 | i16 | u32 | int | u64 | i64 | string
 
 // writer.make_packet(4, "string", 0, u32(1))
-pub fn make_packet(packet int, values ...PacketVal) ?[]byte {
+pub fn make_packet(packet int, values ...PacketVal) []byte {
 	mut s := Stream{}
 
 	s.write_u16(u16(packet))
@@ -128,7 +128,7 @@ pub fn make_packet(packet int, values ...PacketVal) ?[]byte {
 		"string" {
 			s.write_str(v as string)
 		}
-		else { return error("type error: type not found") }
+		else { panic("type not found") }
 		}
 	}
 
